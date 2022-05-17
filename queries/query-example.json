@@ -1,0 +1,61 @@
+{
+  "_source": ["timestamp", "app_name", "context.messageId", "dataparsed.timestamp"],
+  "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "match_phrase": {
+                        "data": "message received"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "exists": {
+                        "field": "dataparsed.timestamp"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "match_phrase": {
+            "beat.hostname": "some-host-name-here"
+          }
+        },
+        {
+          "match_phrase": {
+            "app_name": "my-app-instance-*"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2022-04-01T15:00:00.000Z",
+              "lte": "2022-04-08T15:00:00.000Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ],
+      "should": [],
+      "must_not": []
+    }
+  }
+}
