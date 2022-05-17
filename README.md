@@ -2,7 +2,7 @@
 
 ## Summary
 
-Dump-query.sh is a bash script along with supporting files (environment variables) to run the ElasticDump utility to pull specific data out of ElasticSearch (ES), the data being specified in the QUERY that is run.
+Dump-query.sh is a bash script along with supporting files (environment variables) to run the [ElasticDump](https://github.com/elasticsearch-dump/elasticsearch-dump) utility to pull specific data out of ElasticSearch (ES), the data being specified in the QUERY that is run.
 
 In theory, ANY valid ES query can be run by this bash script and produces result output inside files. 
 
