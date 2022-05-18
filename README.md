@@ -28,7 +28,7 @@ $ ./dump-query.sh "INDEX-NAME-OR-PATTERN" /path/to/query.json /path/to/result.js
 - **/path/to/query.json** - is the path to a file containing a valid ES query in JSON format. See [ES Queries](#es-queries) for more details.
 - **/path/to/result.json** - is a path to a file, which must not exist, where the data will be saved into.
 
-> **Note:** The host is NOT specified in the command line. That is because the host is instead specified in the **dump-query.env** file along with the proper authentication.
+> **Note:** The host is NOT specified in the command line. That is because the host is instead specified in the **dump-query.env** file along with the proper authentication. Need a tool to generate your authentication header? Try the [Basic Auth Header Generator](https://www.debugbear.com/basic-auth-header-generator) by DebugBear.
 
 **Example**
 
@@ -43,9 +43,11 @@ Discussing ES queries is well beyond the scope of this README. The ES Query DSL 
 
 However, if you have access to a Kibana dashboard, it's possible to use the **DISCOVER** tab to create a query and then inspect the Query DSL created by Kibana. Once you have a QUERY that returns the data you are interested in, select the **INSPECT** menu item. Once the inspect tab appears, click on **REQUEST** to see the request sent by Kibana. Copy this to your favorite text editor! Note that this request generally has a lot of entries that you might be able to carefully remove from the JSON for the purposes of dumping data (just make sure you don't break the JSON nesting). For example the following can generally all be removed from the query for use with this dump script: aggregations, sort, stored_fields, script_fields, docvalue_fields, highlight. Generally, **_source** (to select specific fields you want in your output) and **query** (to filter to only the records you are interested in) are sufficient in your query.
 
-### query-example explained
+### Query Examples explained
 
-The query-example.json performs the following:
+The **query-example-select-star.json** is the equivalent if a "select \* where timestamp between some-date and some-other-date" in standard SQL. It gets EVERY field available in an index and only filters for records in a specific timestamp range.
+
+The **query-example.json** performs the following:
 
 - returns only the fields: **timestamp**, **app_name**, **context.messageId**, **dataparsed.timestamp**.
 - filters for records that:
