@@ -40,6 +40,8 @@ set +o allexport
 ED_LIMIT=5000
 # How many concurrent processes to run. Edit to suit!
 ED_CONCURRENCY=3
+# File Size for each output file (will create files of this size at most)
+ED_FILESIZE=500mb
 
 echo "You are about to DUMP records from Elasticsearch."
 echo "Host: $ED_HOST"
@@ -47,6 +49,7 @@ echo "Index: $INDEX"
 echo "Query File: $INQUERY"
 echo "Output File: $OUTFILE"
 echo "Batch Size: $ED_LIMIT"
+echo "Output File Chunk Size: $ED_FILESIZE"
 echo ""
 # Wait for the user to press any KEY to proceed or allow them to Ctrl+C
 read -n1 -rsp $'Press any key to continue or Ctrl+C to exit...\n'
@@ -58,4 +61,5 @@ elasticdump \
   --output="${OUTFILE}" \
   --searchBody=@"${INQUERY}" \
   --limit "$ED_LIMIT" \
-  --concurrency $ED_CONCURRENCY
+  --concurrency $ED_CONCURRENCY \
+  --fileSize="$ED_FILESIZE"
