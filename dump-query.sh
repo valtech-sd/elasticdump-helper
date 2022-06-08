@@ -41,7 +41,7 @@ ED_LIMIT=5000
 # How many concurrent processes to run. Edit to suit!
 ED_CONCURRENCY=3
 # File Size for each output file (will create files of this size at most)
-ED_FILESIZE=500mb
+ED_FILESIZE=250mb
 
 echo "You are about to DUMP records from Elasticsearch."
 echo "Host: $ED_HOST"
