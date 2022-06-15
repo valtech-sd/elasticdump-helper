@@ -42,6 +42,8 @@ ED_LIMIT=5000
 ED_CONCURRENCY=3
 # File Size for each output file (will create files of this size at most)
 ED_FILESIZE=250mb
+# Path to Elasticdump
+ED_BIN_PATH=./node_modules/.bin/elasticdump
 
 echo "You are about to DUMP records from Elasticsearch."
 echo "Host: $ED_HOST"
@@ -55,7 +57,7 @@ echo ""
 read -n1 -rsp $'Press any key to continue or Ctrl+C to exit...\n'
 
 # Do it!
-elasticdump \
+"$ED_BIN_PATH" \
   --headers "${ED_HEADERS}" \
   --input="${ED_HOST}${INDEX}" \
   --output="${OUTFILE}" \

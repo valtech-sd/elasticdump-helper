@@ -13,8 +13,7 @@ Authentication against ES is done using an authentication header (standard http 
 * Bash (or another Linux shell environment.)
 * Node Version Manager ([nvm](https://github.com/nvm-sh/nvm) for macOS/linux, [nvm-windows](https://github.com/coreybutler/nvm-windows#bulb-whats-the-big-difference) for windows)
     - If you must, you can just run with plain old NodeJS for your platform, but a version manager is highly recommended!
-* Install ElasticDump per the instructions in https://github.com/elasticsearch-dump/elasticsearch-dump
-    - Typically, this can be done using NPM globally with `npm install elasticdump -g elasticdump`. Since this is a CLI tool, a global installation should not particularly problematic.
+* Install dependencies with `npm i`.
 * Create an environment file with your host and authorization header. For the structure of the file, copy **dump-query-template.env** into **dump-query.env** and see the comments inside the file.
 
 ## Syntax & Examples
@@ -67,3 +66,13 @@ You can edit the script's constants ED_LIMIT and ED_CONCURRENCY to pass ElasticD
 To add further ElasticDump arguments, edit the script to suit.
 
 Refer to [ElasticDump's options documentation](https://github.com/elasticsearch-dump/elasticsearch-dump#options) for further details.
+
+## Running in Docker
+
+If you wish to run in docker, simply copy this whole repo to the target machine with Docker in it, then:
+
+- Change the **command** in docker-compose.yml to suit your needs (mapping your index, query and results path)
+- Run the container with `docker-compose up` to run interactively (or add `-d` to run in the background.)
+
+
+

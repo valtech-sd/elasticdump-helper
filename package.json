@@ -1,0 +1,26 @@
+{
+  "name": "elasticdump-helper",
+  "version": "1.0.0",
+  "description": "Runs Elasticdump with certain options.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valtech-sd/elasticdump-helper.git"
+  },
+  "author": "Valtech TES",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valtech-sd/elasticdump-helper/issues"
+  },
+  "homepage": "https://github.com/valtech-sd/elasticdump-helper#readme",
+  "dependencies": {
+    "elasticdump":"^6.84.1",
+    "@azure/event-hubs": "^5.8.0",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "node-gzip": "^1.1.2",
+    "utf8": "^3.0.0"
+  }
+}

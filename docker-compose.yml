@@ -1,0 +1,22 @@
+version: '3.7'
+
+# This compose files uses NETWORKS instead of LINKS (which is deprecated in favor of Networks.)
+# To create service aliases, use the `aliases:` list inside the `networks` declaration for a service.
+# Otherwise, all services inside any one network can address each other by the service name!
+
+services:
+
+  elasticdump-helper:
+    image: node:16
+    user: 'node'
+    restart: always
+    hostname: elasticdump-helper
+    container_name: elasticdump-helper
+    working_dir: /home/node/app
+    # Note the command passes arguments into the script (-- denotes the
+    # end of the script reference, everything after is passed into NodeJS.)
+    command: './dump-query.sh "epic_attraction_860_2022*" ./queries/query-example-select-star.json ./results/skytap-test.json'
+    volumes:
+      - type: bind
+        source: '.'
+        target: /home/node/app
